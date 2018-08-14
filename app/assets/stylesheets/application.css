@@ -1,0 +1,314 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ *{
+   margin:0 auto;
+   color: #1a1a1a;
+ }
+
+ header{
+   height:70px;
+   background-color: #ffd753;
+   position: fixed;
+   width: 100%;
+   border-bottom: 1px solid #adadad;
+ }
+
+ .homeP{
+   line-height: 70px;
+   text-align: center;
+   font-size: 25px;
+ }
+
+ .homeRight{
+   right: 2%;
+   top:20px;
+   position:fixed;
+ }
+
+ .createLeft{
+   float:left;
+   width: 20%;
+   line-height: 70px;
+   text-align: center;
+   font-size: 15px;
+   text-decoration: none;
+ }
+
+ .createCenter{
+   float:left;
+   width: 60%;
+   line-height: 70px;
+   text-align: center;
+   font-size: 25px;
+ }
+ .createRight{
+   float:right;
+   width: 20%;
+   line-height: 70px;
+   text-align: center;
+   font-size: 15px;
+   text-decoration: none;
+   background:none;
+   border:0;
+   padding: 0;
+ }
+
+.field{
+  border-bottom: 1px solid ;
+  /*padding: 0px 30px;*/
+  width: 70%;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 3px;
+  font-size: 12px;
+}
+
+.box{
+  margin-top: 90px;
+}
+
+ .actions{
+   background-color: #8fc2b0;
+   box-shadow: 0px 6px #f2f2f2;
+   width:150px;
+   height: 30px;
+   cursor: pointer;
+   text-align: center;
+   color: black;
+   margin-top: 20px;
+ }
+
+ .actions:active{
+   position: relative;
+   top:6px;
+   box-shadow: none;
+ }
+
+.signUp{
+  top:600px;
+}
+
+ .contents{
+   padding-top: 70px;
+   padding-bottom: 40px;
+   height: auto;
+   height: 100%;
+ }
+
+.date{
+  display: inline-block;
+  width: auto;
+}
+
+ .memo{
+   height:100px;
+   border-bottom: 1px solid #f2f2f2;
+ }
+
+.evaluation{
+  display: flex;
+  padding: 5px 0px;
+}
+
+.evaluation h1{
+  width:17%;
+  margin: 0px;
+  font-size: 5px;
+  font-weight: normal;
+  line-height: 21px;
+  text-align: center;
+}
+
+
+ .create table{
+   border-collapse: collapse;
+   /*padding-left: 20%;*/
+   /*padding-right: 10%;*/
+   margin-left: 5%;
+   margin-right: 10%;
+   width: 80%;
+ }
+
+ .create table th{
+   border-left: solid 1px black;
+   border-right: solid 1px black;
+   border-bottom: solid 1px black;
+   padding:3px 30px;
+ }
+
+ .create table td{
+   border-left: solid 1px black;
+   border-right: solid 1px black;
+   border-top: solid 1px black;
+   padding:3px 30px;
+ }
+
+ .cost, .taste, .mood{
+   position: relative;
+ }
+
+ /*.cost{
+   position: relative;
+ }
+.taste{
+  position: relative;
+}
+.mood{
+  position: relative;
+}*/
+
+ .radio02{
+   display: flex;
+   justify-content: space-between;
+   margin: 0px;
+   height: 20px;
+   width: 85%;
+   position: absolute;
+   top: 0;
+   left: 18%;
+   text-align: center;
+ }
+ .radio02-input{
+   display: none;
+ }
+
+ .radio02-input + label{ /*.radio02-inputの隣のlabelに適応される*/
+   width: 20%;
+   /*display: flex;*/
+   justify-content: space-between;
+   margin: 0;
+ }
+ .radio02-input + label::before{
+   content: "";
+   display: block;
+   position: absolute;
+   text-align: left;
+   top: 0;
+   left: 0;
+   /*width: 15px;*/
+   height: 15px;
+
+ }
+ .radio02-input:checked + label{
+   color: #8FC2B0;
+   width: 20%;
+ }
+ .radio02-input:checked + label::after{
+   content: "";
+   display: block;
+   position: absolute;
+   top: 0px;
+   width: 20px;
+   height: 20px;
+   content: "\f005";
+   font-family:"Font Awesome 5 Free";
+   font-weight: 900;
+   font-size: 20px;
+ }
+
+ .memo img{
+   width: 80px;
+   height:80px;
+   padding: 10px;
+   float:left;
+ }
+
+ .namedate{
+   float:left;
+   margin-top: 20px;
+ }
+
+ .namedate p{
+   margin-bottom: 5px;
+ }
+
+ .create p{
+   padding:10px 15px 18px 15px;
+   border: 1px solid #f2f2f2;
+ }
+
+ .create label{
+ }
+ .create input{
+   width: 100%;
+   height:30px;
+   margin-top:8px;
+   border: 1px solid #f2f2f2;
+ }
+
+ .createImage{
+   width: 80px;
+   height: 80px;
+   margin-top:8px;
+ }
+
+ .create textarea{
+   width: 100%;
+   height: 60px;
+   border: 1px solid #f2f2f2;
+   margin-top:8px;
+ }
+
+ .create i{
+   width: 32px;
+   height: 32px;
+ }
+
+ .searches{
+   display: flex;
+   border-bottom: 1px solid #f2f2f2;
+ }
+
+ .search p{
+   padding:5px 5px 5px 0px;
+ }
+
+ .search img{
+   width: 100px;
+   height: 100px;
+ }
+
+ .search i{
+   font-size: 1.5em;
+ }
+
+ .item1 { flex-basis: 40%; }
+ .item2 { flex-basis: 60%; }
+
+ .icon{
+   cursor: pointer;
+ }
+
+ footer{
+   height:40px;
+   background-color: #ffd753;
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+   border-top: 1px solid #adadad;
+ }
+
+ footer p{
+   line-height: 40px;
+   text-align: center;
+ }
+
+ footer i{
+   right: 2%;
+   bottom:4px;
+   position:fixed;
+ }
