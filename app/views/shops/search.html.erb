@@ -1,0 +1,51 @@
+<header>
+  <%= link_to "戻る","/shops/new", {:class => "createLeft"}  %>
+  <p class="createCenter">検索結果</p>
+  <a class="createRight"></a>
+</header>
+
+<% searchShop(params[:name], params[:prefecture]) %>
+
+<div class="contents">
+<% if  @result%>
+  <% if @result["rest"].present? %>
+    <% if @result["total_hit_count"] > "1" %>
+      <% @result["rest"].each do |res| %>
+        <%= link_to new_shop_path(id: res["id"]) do %>
+        <div class="search">
+          <% if res["image_url"]["shop_image1"].present? %>
+            <%= image_tag res["image_url"]["shop_image1"] %>
+          <% else %>
+            <img src="https://myoji-yurai.net/profileImages/noimage.png">
+          <% end %>
+            <p><i class="fas fa-utensils"></i><%= res["name"] %></p>
+            <p><i class="fas fa-map-marker-alt"></i><%= res["address"] %></p>
+            <p><i class="fas fa-subway"></i><%= res["access"]["station"] %></p>
+            <p><i class="fas fa-map-pin"></i><%= res["code"]["prefname"] %></p>
+        </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= link_to new_shop_path(id: @result["rest"]["id"]) do  %>
+        <div class="search">
+          <% if @result["rest"]["image_url"]["shop_image1"].present? %>
+            <%= image_tag @result["rest"]["image_url"]["shop_image1"] %>
+          <% else %>
+            <img src="https://myoji-yurai.net/profileImages/noimage.png">
+          <% end %>
+            <p><i class="fas fa-utensils"></i><%= @result["rest"]["name"] %></p>
+            <p><i class="fas fa-map-marker-alt"></i><%= @result["rest"]["address"] %></p>
+            <p><i class="fas fa-subway"></i><%= @result["rest"]["access"]["station"] %></p>
+            <p><i class="fas fa-map-pin"></i><%= @result["rest"]["code"]["prefname"] %></p>
+        </div>
+      <% end %>
+    <% end %>
+    <% else %>
+    <p class="notFound">
+      検索したお店が存在しません。<br>
+      ワードを変えて検索してください。
+    </p>
+
+  <% end %>
+<% end %>
+</div>

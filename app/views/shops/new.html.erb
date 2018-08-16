@@ -1,22 +1,57 @@
-<%= form_for @shop, html: {class: ''} do |form| %>
+<% shopData = searchShopId(params[:id]) %>
+<% if shopData %>
+  <% if shopData["rest"].present? %>
+    <% @shop.name = shopData["rest"]["name"]%>
+    <% @shop.adress = shopData["rest"]["address"] %>
+    <% @shop.station = shopData["rest"]["access"]["station"] %>
+    <% @shop.prefecture = shopData["rest"]["code"]["prefname"] %>
+
+    <% if shopData["rest"]["image_url"]["shop_image1"].present? %>
+      <% @shop.photo = shopData["rest"]["image_url"]["shop_image1"] %>
+    <% end %>
+  <% end %>
+<% end %>
+
 <header>
   <%= link_to "戻る","/shops/", {:class => "createLeft"}  %>
   <p class="createCenter">新規作成</p>
-  <%= form.submit "保存", {:class => "createRight"}  %>
-  <!-- どこ飛べばいい？ -->
 </header>
 
 <div class="create contents">
-  <p>
-    <%= label :shop ,:prefecture, "県" %>
-    <%= form.search_field :prefecture, :placeholder => "東京都"%>
-    <%= label :shop ,:name, "食事したお店" %>
-    <%= form.search_field(:name)%>
-  </p>
+<% if shopData.blank? %>
+    <%= form_tag(shops_search_path, method: "get") do  %>
+    <p>
+      <%= label :shop ,:prefecture, "県" %>
+      <%
+        area = getAreaCode
+        if area["pref"].present?
+          areaArray = area["pref"].map{|e| [e["pref_name"], e["pref_code"]]}
+        end
+      %>
+      <%= select_tag :prefecture, options_for_select(areaArray) %><br>
+      <%= label :shop ,:name, "食事したお店" %>
+      <%= text_field_tag(:name)%>
+
+      <%= submit_tag "ぐるなびで検索する", {:class => "searchButton", :style =>"width: 50%; height:20px; padding:0;"}%>
+    </p>
+    <% end %>
+<% end %>
+
+<%= form_for @shop, html: {class: ''} do |form| %>
+
+  <% if shopData %>
+    <p>
+      <%= label :shop ,:name, "食事したお店"%>
+      <%= form.search_field(:name)%>
+    </p>
+    <!-- <p>
+      <%= label :shop ,:target_at, "食事した日時"%>
+      <%= form.datetime_select :target_at, :use_month_numbers => true,  :class => "date form-control"%>
+    </p> -->
+  <% end %>
   <p>
     <%= label :shop ,:target_at, "食事した日時"%>
-    <%= form.datetime_select :target_at, :use_month_numbers => true, :date_separator => "/", :class => "date form-control"%>
-
+    <%= form.datetime_select :target_at, :use_month_numbers => true,  :class => "date form-control"%>
   </p>
   <p>
      <%= label :shop ,:adress, "住所" %>
@@ -28,7 +63,17 @@
   </p>
   <p>
      写真<br>
-     <img src="https://imgfp.hotp.jp/IMGH/33/60/P030143360/P030143360_238.jpg" class="createImage">
+     <% if shopData %>
+     <% if shopData["rest"].present? %>
+       <% if shopData["rest"]["image_url"]["shop_image1"].present? %>
+         <% @shop.photo = shopData["rest"]["image_url"]["shop_image1"] %>
+         <%= image_tag shopData["rest"]["image_url"]["shop_image1"], :class => "createImage" %>
+         <%= form.hidden_field :photo, :value => @shop.photo %>
+       <% else %>
+         <img src="https://myoji-yurai.net/profileImages/noimage.png" class="createImage">
+       <% end %>
+     <% end %>
+     <% end %>
   </p>
   <div class="evaluations">
     <div class="cost">
@@ -44,16 +89,16 @@
         </table>
        </div>
        <div class="radio02">
-          <%= form.radio_button :cost, 1, {:class=> "radio02-input", :name=>"cost", :id =>"shop_cost_radio01-01"} %>
-          <%= form.label :cost, "1", value: "radio01-01"  %>
-          <%= form.radio_button :cost, 2, {:class=> "radio02-input", :name=>"cost", :id =>"shop_cost_radio01-02"} %>
-          <%= form.label :cost, "2", value: "radio01-02"  %>
-          <%= form.radio_button :cost, 3, {:class=> "radio02-input", :name=>"cost", :id =>"shop_cost_radio01-03"} %>
-          <%= form.label :cost, "3", value: "radio01-03"  %>
-          <%= form.radio_button :cost, 4, {:class=> "radio02-input", :name=>"cost", :id =>"shop_cost_radio01-04"} %>
-          <%= form.label :cost, "4", value: "radio01-04"  %>
-          <%= form.radio_button :cost, 5, {:class=> "radio02-input", :name=>"cost", :id =>"shop_cost_radio01-05"} %>
-          <%= form.label :cost, "5", value: "radio01-05"  %>
+          <%= form.radio_button :cost, 1, {:class=> "radio02-input", :id =>"shop_cost_radio01-01"} %>
+          <label for="shop_cost_radio01-01"></label>
+          <%= form.radio_button :cost, 2, {:class=> "radio02-input", :id =>"shop_cost_radio01-02"} %>
+          <label for="shop_cost_radio01-02"></label>
+          <%= form.radio_button :cost, 3, {:class=> "radio02-input", :id =>"shop_cost_radio01-03"} %>
+          <label for="shop_cost_radio01-03"></label>
+          <%= form.radio_button :cost, 4, {:class=> "radio02-input", :id =>"shop_cost_radio01-04"} %>
+          <label for="shop_cost_radio01-04"></label>
+          <%= form.radio_button :cost, 5, {:class=> "radio02-input", :id =>"shop_cost_radio01-05"} %>
+          <label for="shop_cost_radio01-05"></label>
        </div>
      </div>
      <div class="taste">
@@ -69,16 +114,16 @@
          </table>
         </div>
         <div class="radio02">
-          <%= form.radio_button :taste, 1, {:class=> "radio02-input", :name=>"taste", :id =>"shop_taste_radio02-01"} %>
-          <%= form.label :taste, "1", value: "radio02-01"  %>
-          <%= form.radio_button :taste, 2, {:class=> "radio02-input", :name=>"taste", :id =>"shop_taste_radio02-02"} %>
-          <%= form.label :taste, "2", value: "radio02-02"  %>
-          <%= form.radio_button :taste, 3, {:class=> "radio02-input", :name=>"taste", :id =>"shop_taste_radio02-03"} %>
-          <%= form.label :taste, "3", value: "radio02-03"  %>
-          <%= form.radio_button :taste, 4, {:class=> "radio02-input", :name=>"taste", :id =>"shop_taste_radio02-04"} %>
-          <%= form.label :taste, "4", value: "radio02-04"  %>
-          <%= form.radio_button :taste, 5, {:class=> "radio02-input", :name=>"taste", :id =>"shop_taste_radio02-05"} %>
-          <%= form.label :taste, "5", value: "radio02-05"  %>
+          <%= form.radio_button :taste, 1, {:class=> "radio02-input", :id =>"shop_taste_radio02-01"} %>
+          <label for="shop_taste_radio02-01"></label>
+          <%= form.radio_button :taste, 2, {:class=> "radio02-input", :id =>"shop_taste_radio02-02"} %>
+          <label for="shop_taste_radio02-02"></label>
+          <%= form.radio_button :taste, 3, {:class=> "radio02-input", :id =>"shop_taste_radio02-03"} %>
+          <label for="shop_taste_radio02-03"></label>
+          <%= form.radio_button :taste, 4, {:class=> "radio02-input", :id =>"shop_taste_radio02-04"} %>
+          <label for="shop_taste_radio02-04"></label>
+          <%= form.radio_button :taste, 5, {:class=> "radio02-input", :id =>"shop_taste_radio02-05"} %>
+          <label for="shop_taste_radio02-05"></label>
         </div>
       </div>
       <div class="mood">
@@ -94,16 +139,16 @@
           </table>
          </div>
          <div class="radio02">
-           <%= form.radio_button :mood, 1, {:class=> "radio02-input", :name=>"mood", :id =>"shop_mood_radio03-01"} %>
-           <%= form.label :mood, "1", value: "radio03-01"  %>
-           <%= form.radio_button :mood, 2, {:class=> "radio02-input", :name=>"mood", :id =>"shop_mood_radio03-02"} %>
-           <%= form.label :mood, "2", value: "radio03-02"  %>
-           <%= form.radio_button :mood, 3, {:class=> "radio02-input", :name=>"mood", :id =>"shop_mood_radio03-03"} %>
-           <%= form.label :mood, "3", value: "radio03-03"  %>
-           <%= form.radio_button :mood, 4, {:class=> "radio02-input", :name=>"mood", :id =>"shop_mood_radio03-04"} %>
-           <%= form.label :mood, "4", value: "radio03-04"  %>
-           <%= form.radio_button :mood, 5, {:class=> "radio02-input", :name=>"mood", :id =>"shop_mood_radio03-05"} %>
-           <%= form.label :mood, "5", value: "radio03-05"  %>
+           <%= form.radio_button :mood, 1, {:class=> "radio02-input", :id =>"shop_mood_radio03-01"} %>
+           <label for="shop_mood_radio03-01"></label>
+           <%= form.radio_button :mood, 2, {:class=> "radio02-input", :id =>"shop_mood_radio03-02"} %>
+           <label for="shop_mood_radio03-02"></label>
+           <%= form.radio_button :mood, 3, {:class=> "radio02-input", :id =>"shop_mood_radio03-03"} %>
+           <label for="shop_mood_radio03-03"></label>
+           <%= form.radio_button :mood, 4, {:class=> "radio02-input", :id =>"shop_mood_radio03-04"} %>
+           <label for="shop_mood_radio03-04"></label>
+           <%= form.radio_button :mood, 5, {:class=> "radio02-input", :id =>"shop_mood_radio03-05"} %>
+           <label for="shop_mood_radio03-05"></label>
          </div>
        </div>
    </div>
@@ -112,6 +157,8 @@
      <!--textareaはどうやるか -->
      <%= form.search_field(:memo)%>
    </p>
-
+   <%= form_tag("/shops/") do %>
+     <input type="submit" value="保存" class="newCreateRight">
+   <% end %>
  <%end%>
 </div>

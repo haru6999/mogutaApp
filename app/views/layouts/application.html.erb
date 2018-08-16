@@ -8,24 +8,16 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="<%=image_path("icon.png")%>" />
   </head>
 
   <body>
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <nav>
-     <% if user_signed_in? %>
-       <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, html: {class: 'logout'} %>
-     <% else %>
-       <%= link_to 'サインアップ', new_user_registration_path, html: {class: 'signup'} %>
-       <%= link_to 'ログイン', new_user_session_path, html: {class: 'login'} %>
-     <% end %>
-     <!-- ▼ 追加  -->
-     <% if user_signed_in? %>
-     username : <%= current_user.username %>さん
-     <% end %>
-     <!-- ▲ 追加 -->
-   </nav>
+
   </body>
 </html>
