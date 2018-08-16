@@ -9,15 +9,14 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//= require jquery #ない人追加
-//= require serviceworker-companion #追加
+//= require jquery
+//= require serviceworker-companion
 
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
 //= require serviceworker-companion
 
-// safari起動させないための記述
 $(function(){
   $('a').click(function(){
     location.href = $(this).attr('href');
