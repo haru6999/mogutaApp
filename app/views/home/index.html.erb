@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta name="viewport" content="width=device-width">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="bagelee">
+  <meta charset="UTF-8" />
+  <title>ログイン</title>
+</head>
+<body class="logIn">
+  <div class="homeIcon">
+    <%= image_tag("moguta.png", :size => "150x150") %>
+  </div>
+
+  <div class="home1">
+		<%= link_to 'ユーザー登録', new_user_registration_path %>
+	</div>
+	<div class="home2">
+  	<%= link_to 'ログイン', new_user_session_path %>
+  </div>
+
+
+</body>
+</html>

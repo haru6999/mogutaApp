@@ -1,33 +1,33 @@
-<h2>Sign up</h2>
+<header>
+  <%= link_to "戻る","/home/index", {:class => "createLeft"}  %>
+  <p class="createCenter">ユーザー登録</p>
+</header>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'contents'}) do |f| %>
   <%= devise_error_messages! %>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email,"メールアドレス" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :username %><br />
+    <%= f.label :username, "ユーザーネーム" %><br />
     <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :password, "パスワード（６文字以上）" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "パスワード（確認）" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "サインアップ" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

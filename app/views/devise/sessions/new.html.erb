@@ -1,5 +1,6 @@
 <header>
-  <p class="homeP">ユーザー登録</p>
+  <%= link_to "戻る","/home/index", {:class => "createLeft"}  %>
+  <p class="createCenter">ログイン</p>
 </header>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'contents'}) do |f| %>
@@ -26,5 +27,3 @@
     <%= f.submit "ログイン" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
