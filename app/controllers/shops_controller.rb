@@ -8,7 +8,7 @@ def index
   else
     @shops = current_user.shops.order(created_at: :asc)
   end
-  @num = Shop.count
+  @num = current_user.shops.count
 end
 
 def show
