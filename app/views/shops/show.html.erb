@@ -65,5 +65,5 @@
      <% end %>
    </p>
    <p><i class="fas fa-pencil-alt fa-2x iColor"></i><%= @shop.memo %></p>
-   <%= link_to("削除", "/shops/#{@shop.id}/destroy", {method:"post", class:"destroyDate"}) %>
+   <%= button_to("削除", "/shops/#{@shop.id}/destroy", {method:"post", class:"destroy"}) %>
  </div>

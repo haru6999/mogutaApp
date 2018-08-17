@@ -395,14 +395,14 @@
   color:#424242;
 }
 
-.destroyDate{
+.destroy{
   margin-top: 15px !important;
   margin-left: 25%;
   background-color: #adadad;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 6px;
-  width: 50%;
+  width: 50% !important;
   height:25px;
   padding:0;
   display: block;

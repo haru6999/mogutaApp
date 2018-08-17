@@ -37,9 +37,9 @@ def update
   redirect_to @shop
 end
 
-def destroyDate
+def destroy
   @shop = target_shop params[:id]
-  @shop.destroyDate
+  @shop.destroy
   redirect_to @shop
 end
 
