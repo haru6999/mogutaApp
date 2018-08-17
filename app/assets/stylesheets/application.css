@@ -20,6 +20,13 @@
    font-family: sans-serif;
    text-decoration: none;
  }
+/*
+.trans {
+  font-size: 16px;
+  transform: scale(0.8);
+  width: 100%;
+}*/
+
 
  body {
   font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'
@@ -31,6 +38,7 @@
    position: fixed;
    width: 100%;
    border-bottom: 1px solid #adadad;
+   z-index: 100;
  }
 
  .homeP{
@@ -111,7 +119,7 @@
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 10000;
+  z-index: 1000;
  }
 
  .line-break {
@@ -231,12 +239,8 @@
 
  .create table{
    border-collapse: collapse;
-   /*padding-left: 20%;*/
-   /*padding-right: 10%;*/
-   /*margin-left: 5%;*/
-   /*margin-right: 10%;*/
    width: 60%;
-   margin-left: 20%
+   margin-left: 25%
  }
 
  .create table th{
@@ -273,7 +277,7 @@
  }
 
  .radio02-input + label{ /*.radio02-inputの隣のlabelに適応される*/
-   width: 10%;
+   width: 13%;
    /*display: flex;*/
    justify-content: space-between;
    margin: 0;
@@ -291,7 +295,7 @@
  }
  .radio02-input:checked + label{
    color: #8FC2B0;
-   width: 10%;
+   width: 13%;
  }
  .radio02-input:checked + label::after{
    content: "";
@@ -306,6 +310,27 @@
    font-size: 20px;
    margin: 0 auto;
  }
+
+/*展示のためのipod touch,iphone5用*/
+ @media(max-width:340px){
+   .create table{
+     margin-left: 22%
+   }
+   .create table th{
+     padding:3px 28px;
+   }
+
+   .create table td{
+     padding:3px 28px;
+   }
+   .radio02-input + label{ /*.radio02-inputの隣のlabelに適応される*/
+     width: 10%;
+   }
+   .radio02-input:checked + label{
+     width: 7%;
+   }
+ }
+ /*ここまで*/
 
  .memo img{
    width: 80px;
