@@ -18,6 +18,16 @@
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    
+    <nav class="log">
+     <% if user_signed_in? %>
+       <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, html: {class: 'logout'} %>
+     <% else %>
+     <% end %>
+     <div class="username">
+       <% if user_signed_in? %>
+           <%= current_user.username %>さん
+       <% end %>
+     </div>
+   </nav>
   </body>
 </html>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "shops/new" => "shops#new"
   get "shops/show" => "shops#show"
   get "shops/:id" => "shops#show"
-  post "shops/:id/destroy" => "shops#destroy"
+  post "shops/:id/destroyDate" => "shops#destroyDate"
   devise_for :users
   resources :shops
 

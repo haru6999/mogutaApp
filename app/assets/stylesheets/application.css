@@ -395,7 +395,7 @@
   color:#424242;
 }
 
-.destroy{
+.destroyDate{
   margin-top: 15px !important;
   margin-left: 25%;
   background-color: #adadad;
@@ -413,6 +413,8 @@
 .log{
   display: flex;
   margin:0 !important;
+  background-color:#adadad;
+  color: white;
 }
 
 .logout{
@@ -421,6 +423,7 @@
 
 .username{
   margin:0;
+  padding-right: 20px;
 }
 
  footer{
