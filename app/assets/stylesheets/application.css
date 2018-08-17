@@ -329,6 +329,9 @@
    .radio02-input:checked + label{
      width: 7%;
    }
+   .showI{
+     padding-right: 5px !important;
+   }
  }
  /*ここまで*/
 
@@ -378,7 +381,6 @@
 .showI{
   font-size: 1.5em;
   color:#8fc2b0;
-  padding-right: 5px !important;
 }
 
 .memo img{
