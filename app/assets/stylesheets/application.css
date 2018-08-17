@@ -236,7 +236,7 @@
    /*margin-left: 5%;*/
    /*margin-right: 10%;*/
    width: 60%;
-   margin-left: 25%
+   margin-left: 20%
  }
 
  .create table th{
@@ -273,7 +273,7 @@
  }
 
  .radio02-input + label{ /*.radio02-inputの隣のlabelに適応される*/
-   width: 13%;
+   width: 10%;
    /*display: flex;*/
    justify-content: space-between;
    margin: 0;
@@ -291,7 +291,7 @@
  }
  .radio02-input:checked + label{
    color: #8FC2B0;
-   width: 13%;
+   width: 10%;
  }
  .radio02-input:checked + label::after{
    content: "";
@@ -353,6 +353,7 @@
 .showI{
   font-size: 1.5em;
   color:#8fc2b0;
+  padding-right: 5px !important;
 }
 
 .memo img{
